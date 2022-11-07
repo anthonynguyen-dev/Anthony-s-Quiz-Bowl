@@ -37,10 +37,18 @@ body {
 
 }
 
+#answers {
+    display: inline;
+    justify-content: space-around;
+}
 
 .answer-btn {
     background-color: #F7F6F2;
     font-size: large;
     cursor: pointer;
     font-family: Times, Times New Roman, serif;
+    border-radius: 13%;
+    display: flex;
+    justify-content: space-between;
+    
 }

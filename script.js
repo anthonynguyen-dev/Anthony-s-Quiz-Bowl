@@ -9,6 +9,8 @@ var question = document.querySelector("#question");
 var currentQuestion = 0;
 var timer = document.querySelector(".time");
 var timeLeft = 10;
+var highScore = document.querySelector("#high-score");
+var highScoreContainer = document.querySelector("#high-scoreContainer");
 var questions = [
   {
     questionText: "What kind of casing is most commonly used in Javascript?",
