@@ -15,6 +15,7 @@ var timeLeft = 120;
 var highScore = document.querySelector("#high-score");
 var highScoreContainer = document.querySelector("#high-scoreContainer");
 var finalScore = document.querySelector("#score");
+var currentScore = document.querySelector("#userScore");
 
 var questions = [
   {
@@ -80,14 +81,12 @@ var questions = [
     correctAnswer: "Alert",
   },
 ];
-
 function startQuiz() {
-  startBtn.style.display = "none";
-  question.textContent = questions[currentQuestion].questionText;
-  answerA.textContent = questions[currentQuestion].answerChoices[0];
-  answerB.textContent = questions[currentQuestion].answerChoices[1];
-  answerC.textContent = questions[currentQuestion].answerChoices[2];
-  answerD.textContent = questions[currentQuestion].answerChoices[3];
+  answerA.style.visibility = "visible";
+  answerB.style.visibility = "visible";
+  answerC.style.visibility = "visible";
+  answerD.style.visibility = "visible";
+  currentScore.style.visibility = "visible";
 
   function setCountDown() {
     var countDown = setInterval(function () {
@@ -106,20 +105,32 @@ function startQuiz() {
   }
 
   setCountDown();
+  createQuestion();
+}
+
+function createQuestion() {
+  startBtn.style.display = "none";
+  question.textContent = questions[currentQuestion].questionText;
+  answerA.textContent = questions[currentQuestion].answerChoices[0];
+  answerB.textContent = questions[currentQuestion].answerChoices[1];
+  answerC.textContent = questions[currentQuestion].answerChoices[2];
+  answerD.textContent = questions[currentQuestion].answerChoices[3];
 }
 function answerCheck(event) {
   if (event.target.textContent === questions[currentQuestion].correctAnswer) {
-    answerCheck.textContent = "Correct!";
+    console.log("correct");
   } else {
     timeLeft -= 5;
     timer.textContent = timeLeft;
-    answerCheck.textContent = "Incorrect!";
+    console.log("incorrect");
   }
-  currentQuestion++;
-  if (currentQuestion < questions.length) {
-    startQuiz();
+  if (currentQuestion == undefined) {
+  } else {
+    currentQuestion++;
+    createQuestion();
   }
 }
+
 function endQuiz() {}
 
 startBtn.addEventListener("click", startQuiz);

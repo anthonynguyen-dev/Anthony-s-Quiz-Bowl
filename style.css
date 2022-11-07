@@ -13,6 +13,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 10%;
+    margin-left: 5%;
 }
 
 #question {
@@ -52,3 +53,12 @@ body {
     justify-content: space-between;
     
 }
+
+#answer-a, #answer-b, #answer-c, #answer-d, #userScore {
+    visibility: hidden;
+}
+
+#leaderBoards { position: absolute;
+    top: 1%;
+}
+
