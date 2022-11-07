@@ -8,7 +8,7 @@ var questionHolder = document.querySelector("#question-container");
 var question = document.querySelector("#question");
 var currentQuestion = 0;
 var timer = document.querySelector(".time");
-var timeLeft = 15;
+var timeLeft = 10;
 var questions = [
   {
     questionText: "What kind of casing is most commonly used in Javascript?",
@@ -32,7 +32,45 @@ var questions = [
     correctAnswer: "Boolean",
   },
   {
-    questionText: "",
+    questionText: "What is used to identify the first index of an array?",
+    answerChoices: ["Letters", "Numbers", "functions", "Booleans"],
+    correctAnswer: "Numbers",
+
+    questionText: "The first index of an array is ___.",
+    answerChoices: ["8", "5", "1", "0"],
+    correctAnswer: "0",
+  },
+  {
+    questionText: "How is a string identified?",
+    answerChoices: ["quotes", "straight brackets", "colons", "dashes"],
+    correctAnswer: "quotes",
+  },
+  {
+    questionText:
+      "Which of the following shows that two variables have a strict equality?",
+    answerChoices: ["==", "=", "===", ":"],
+    correctAnswer: "===",
+  },
+  {
+    questionText: "What is the correct way to create a function?",
+    answerChoices: [
+      "createFunction",
+      "function functionName()",
+      "createFunction()",
+      "function = functionName()",
+    ],
+    correctAnswer: "function functionName()",
+  },
+  {
+    questionText: "How is JavaScript put into the HTML?",
+    answerChoices: ["<script>", "src:", "<link>", "<javascript>"],
+    correctAnswer: "<script>",
+  },
+  {
+    questionText:
+      "Which of the following is a type of Pop up box available in Javascipt?",
+    answerChoices: ["Pop-up", "Surprise", "Reminder", "Alert"],
+    correctAnswer: "Alert",
   },
 ];
 function startQuiz() {
@@ -44,9 +82,15 @@ function startQuiz() {
 
   function setCountDown() {
     var countDown = setInterval(function () {
-      timeLeft--;
-      timer.textContent = "Time Left: " + timeLeft;
-      if (timeLeft === 0) {
+      if (timeLeft > 1) {
+        timer.textContent = timeLeft + " seconds remaining";
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timer.textContent = timeLeft + " second remaining";
+        timeLeft--;
+      } else {
+        timer.textContent = "NO TIME LEFT";
+
         clearInterval(countDown);
       }
     }, 1000);
@@ -71,4 +115,10 @@ startBtn.addEventListener("click", startQuiz);
 
 for (let i = 0; i < answerBtns.length; i++) {
   answerBtns[i].addEventListener("click", answerCheck);
+}
+
+function additionalTime(event) {
+  if (event.target.textContent === questions[currentQuestion].correctAnswer) {
+    timeLeft + 2;
+  } else timeLeft - 2;
 }
