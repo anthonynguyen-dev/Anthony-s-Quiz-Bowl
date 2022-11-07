@@ -4,13 +4,18 @@ var answerB = document.querySelector("#answer-b");
 var answerC = document.querySelector("#answer-c");
 var answerD = document.querySelector("#answer-d");
 var answerBtns = document.querySelectorAll(".answer-btn");
+
 var questionHolder = document.querySelector("#question-container");
 var question = document.querySelector("#question");
 var currentQuestion = 0;
+
 var timer = document.querySelector(".time");
-var timeLeft = 10;
+var timeLeft = 120;
+
 var highScore = document.querySelector("#high-score");
 var highScoreContainer = document.querySelector("#high-scoreContainer");
+var finalScore = document.querySelector("#score");
+
 var questions = [
   {
     questionText: "What kind of casing is most commonly used in Javascript?",
@@ -75,7 +80,9 @@ var questions = [
     correctAnswer: "Alert",
   },
 ];
+
 function startQuiz() {
+  startBtn.style.display = "none";
   question.textContent = questions[currentQuestion].questionText;
   answerA.textContent = questions[currentQuestion].answerChoices[0];
   answerB.textContent = questions[currentQuestion].answerChoices[1];
@@ -102,9 +109,11 @@ function startQuiz() {
 }
 function answerCheck(event) {
   if (event.target.textContent === questions[currentQuestion].correctAnswer) {
-    console.log("correct");
+    answerCheck.textContent = "Correct!";
   } else {
-    console.log("incorrect");
+    timeLeft -= 5;
+    timer.textContent = timeLeft;
+    answerCheck.textContent = "Incorrect!";
   }
   currentQuestion++;
   if (currentQuestion < questions.length) {
@@ -117,10 +126,4 @@ startBtn.addEventListener("click", startQuiz);
 
 for (let i = 0; i < answerBtns.length; i++) {
   answerBtns[i].addEventListener("click", answerCheck);
-}
-
-function additionalTime(event) {
-  if (event.target.textContent === questions[currentQuestion].correctAnswer) {
-    timeLeft + 2;
-  } else timeLeft - 2;
 }
