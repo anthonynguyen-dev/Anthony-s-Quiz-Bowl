@@ -7,7 +7,8 @@ var answerBtns = document.querySelectorAll(".answer-btn");
 var questionHolder = document.querySelector("#question-container");
 var question = document.querySelector("#question");
 var currentQuestion = 0;
-
+var timer = document.querySelector(".time");
+var timeLeft = 15;
 var questions = [
   {
     questionText: "What kind of casing is most commonly used in Javascript?",
@@ -25,6 +26,14 @@ var questions = [
     ],
     correctAnswer: "element.addEventListener",
   },
+  {
+    questionText: "Which of the following is a datatype?",
+    answerChoices: ["Boolean", "Function", "Objects", "Arrays"],
+    correctAnswer: "Boolean",
+  },
+  {
+    questionText: "",
+  },
 ];
 function startQuiz() {
   question.textContent = questions[currentQuestion].questionText;
@@ -32,6 +41,18 @@ function startQuiz() {
   answerB.textContent = questions[currentQuestion].answerChoices[1];
   answerC.textContent = questions[currentQuestion].answerChoices[2];
   answerD.textContent = questions[currentQuestion].answerChoices[3];
+
+  function setCountDown() {
+    var countDown = setInterval(function () {
+      timeLeft--;
+      timer.textContent = "Time Left: " + timeLeft;
+      if (timeLeft === 0) {
+        clearInterval(countDown);
+      }
+    }, 1000);
+  }
+
+  setCountDown();
 }
 function answerCheck(event) {
   if (event.target.textContent === questions[currentQuestion].correctAnswer) {

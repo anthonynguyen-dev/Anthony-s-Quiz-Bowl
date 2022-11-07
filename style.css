@@ -1,0 +1,46 @@
+body {
+    background-color: #F0E5CF;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    color: #4B6587;
+    font-family: Times, Times New Roman, serif;
+}
+
+.quiz {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+#question {
+    font-size: larger;
+    padding-bottom: 7%;
+
+}
+
+#start-btn {
+    border-style: none;
+    background-color:#F0E5CF;
+    color: #4B6587;
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    font-family: Times, Times New Roman, serif;
+}
+
+.time {
+      text-align: right;
+
+}
+
+
+.answer-btn {
+    background-color: #F7F6F2;
+    font-size: large;
+    cursor: pointer;
+    font-family: Times, Times New Roman, serif;
+}
