@@ -4,6 +4,7 @@ var answerB = document.querySelector("#answer-b");
 var answerC = document.querySelector("#answer-c");
 var answerD = document.querySelector("#answer-d");
 var answerBtns = document.querySelectorAll(".answer-btn");
+var head = document.querySelector(".head");
 
 var questionHolder = document.querySelector("#question-container");
 var question = document.querySelector("#question");
@@ -13,7 +14,7 @@ var timer = document.querySelector(".time");
 var timeLeft = 90;
 
 var highScore = document.querySelector("#high-score");
-var highScoreContainer = document.querySelector("#high-scoreContainer");
+var highScoreContainer = document.querySelector("#highscore-container");
 var finalScore = document.querySelector("#score");
 var currentScore = document.querySelector("#userScore");
 var score = 0;
@@ -21,7 +22,10 @@ var score = 0;
 var highScoreChart = document.querySelector("#done");
 var submitInitials = document.querySelector("#submitInitials");
 var initialsTag = document.querySelector("#initialsTag");
-
+var clearScores = document.querySelector("#clearLeaderBoards");
+var goHome = document.querySelector("#goHome");
+var savedHighscores = [];
+loadHighScore();
 var questions = [
   {
     questionText: "What kind of casing is most commonly used in Javascript?",
@@ -161,19 +165,43 @@ function submitHighScore(event) {
     name: initials,
     score: score,
   };
-  localStorage.setItem("player", JSON.stringify(highScore));
+  savedHighscores.push(highScore);
+  console.log(savedHighscores);
+  localStorage.setItem("player", JSON.stringify(savedHighscores));
 }
 function loadHighScore() {
   var player = localStorage.getItem("player");
+  console.log(player);
   if (player === null) {
-    console.log("No highscores");
+    savedHighscores = [];
   } else {
-    var highScore = JSON.parse(player);
-    highScoreContainer.textContent =
-      "name: " + highScore.name + " score: " + highScore.score;
+    savedHighscores = JSON.parse(player);
+    for (var i in savedHighscores) {
+      highScoreContainer.appendChild(
+        document.createElement("div")
+      ).textContent =
+        "name: " +
+        savedHighscores[i].name +
+        " score: " +
+        savedHighscores[i].score;
+    }
   }
+}
+function clearHighScores() {
+  localStorage.clear();
+  highScoreContainer.innerHTML = "";
+  savedHighscores = [];
 }
 
 for (let i = 0; i < answerBtns.length; i++) {
   answerBtns[i].addEventListener("click", answerCheck);
 }
+clearScores.addEventListener("click", clearHighScores);
+
+function goHome() {
+  highScoreChart.style.visibility = "hidden";
+  startBtn.style.visibility = "visible";
+  head.style.visibility = "visible";
+}
+
+goHome.addEventListener("click", goHome);
