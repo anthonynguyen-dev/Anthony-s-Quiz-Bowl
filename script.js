@@ -10,12 +10,17 @@ var question = document.querySelector("#question");
 var currentQuestion = 0;
 
 var timer = document.querySelector(".time");
-var timeLeft = 120;
+var timeLeft = 90;
 
 var highScore = document.querySelector("#high-score");
 var highScoreContainer = document.querySelector("#high-scoreContainer");
 var finalScore = document.querySelector("#score");
 var currentScore = document.querySelector("#userScore");
+var score = 0;
+
+var highScoreChart = document.querySelector("#done");
+var submitInitials = document.querySelector("#submitInitials");
+var initialsTag = document.querySelector("#initialsTag");
 
 var questions = [
   {
@@ -100,6 +105,7 @@ function startQuiz() {
         timer.textContent = "NO TIME LEFT";
 
         clearInterval(countDown);
+        endQuiz();
       }
     }, 1000);
   }
@@ -119,21 +125,54 @@ function createQuestion() {
 function answerCheck(event) {
   if (event.target.textContent === questions[currentQuestion].correctAnswer) {
     console.log("correct");
+    score += 10;
+    finalScore.textContent = score;
   } else {
-    timeLeft -= 5;
+    timeLeft -= 10;
     timer.textContent = timeLeft;
     console.log("incorrect");
   }
-  if (currentQuestion == undefined) {
+  if (currentQuestion >= questions.length - 1) {
+    endQuiz();
   } else {
     currentQuestion++;
     createQuestion();
   }
 }
 
-function endQuiz() {}
+function endQuiz() {
+  console.log("game has ended");
+  questionHolder.style.visibility = "hidden";
+  answerA.style.visibility = "hidden";
+  answerB.style.visibility = "hidden";
+  answerC.style.visibility = "hidden";
+  answerD.style.visibility = "hidden";
+  currentScore.style.visibility = "visible";
+  highScoreChart.style.visibility = "visible";
+  finalScore.textContent = score;
+}
 
 startBtn.addEventListener("click", startQuiz);
+submitInitials.addEventListener("click", submitHighScore);
+function submitHighScore(event) {
+  event.preventDefault();
+  var initials = initialsTag.value;
+  var highScore = {
+    name: initials,
+    score: score,
+  };
+  localStorage.setItem("player", JSON.stringify(highScore));
+}
+function loadHighScore() {
+  var player = localStorage.getItem("player");
+  if (player === null) {
+    console.log("No highscores");
+  } else {
+    var highScore = JSON.parse(player);
+    highScoreContainer.textContent =
+      "name: " + highScore.name + " score: " + highScore.score;
+  }
+}
 
 for (let i = 0; i < answerBtns.length; i++) {
   answerBtns[i].addEventListener("click", answerCheck);

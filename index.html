@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anthony's time quiz</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header class="head">
-        <h1>Anthony's Quiz Bowl</h1>
+      <h1>Anthony's Quiz Bowl</h1>
     </header>
     <main class="quiz">
+      <div>
+        <button id="start-btn">Start Quiz!</button>
+      </div>
+      <article id="question-container">
+        <p class="time"></p>
+        <p id="question"></p>
+        <section id="answers">
+          <button id="answer-a" class="answer-btn"></button>
+          <br />
+          <button id="answer-b" class="answer-btn"></button>
+          <br />
+          <button id="answer-c" class="answer-btn"></button>
+          <br />
+          <button id="answer-d" class="answer-btn"></button>
+        </section>
+      </article>
+      <div id="done" style="visibility: hidden">
         <div>
-            <button id="start-btn">Start Quiz!</button>
+          <h1>High Scores</h1>
+          <div id="userScore">Score: <span id="score"></span></div>
         </div>
-        <article id="question-container">
-            <p class="time"></p>
-            <p id="question"></p>
-            <section id="answers">
-            <button id="answer-a" class="answer-btn"></button>
-            <br>
-            <button id="answer-b" class="answer-btn"></button>
-            <br>
-            <button id="answer-c" class="answer-btn"></button>
-            <br>
-            <button id="answer-d" class="answer-btn"></button>
-        </section>
-        </article>
-        <div id="userScore">Score: <span id="score"></span></div>
-        <section id="high-score" class="high-score" style="display: none;">
-            <form>
-                <p>Enter Initials: <input id="initialsTag" type="text">
-                <button type="submit" id="submitInitials">Submit Score!</button>
-                </p>
-            </form>
-        </section>
-    </main>
-    <section id="leaderBoards">
-        <h2>High Scores!</h2>
-        <div id="high-scoreContainer"></div>
         <p>
-            <button type="submit" id="backButton">Back</button>
-            <button type="submit" id="clearLeaderBoards">Clear All Scores</button>
+          Enter Initials: <input id="initialsTag" type="text" />
+          <button type="submit" id="submitInitials">Submit Score!</button>
         </p>
-    </section>
-    
-</body>
+        <ul id="highscore-container">
+          <li></li>
+        </ul>
+        <section id="leaderBoards">
+          <p>
+            <button type="submit" id="backButton">Back</button>
+            <button type="submit" id="clearLeaderBoards">
+              Clear All Scores
+            </button>
+          </p>
+        </section>
+      </div>
+      <section id="high-score" class="high-score" style="display: none">
+        <form></form>
+      </section>
+    </main>
+  </body>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </html>
