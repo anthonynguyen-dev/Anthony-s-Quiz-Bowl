@@ -23,7 +23,7 @@ var highScoreChart = document.querySelector("#done");
 var submitInitials = document.querySelector("#submitInitials");
 var initialsTag = document.querySelector("#initialsTag");
 var clearScores = document.querySelector("#clearLeaderBoards");
-var goHome = document.querySelector("#goHome");
+var home = document.querySelector("#goHome");
 var savedHighscores = [];
 loadHighScore();
 var questions = [
@@ -91,6 +91,10 @@ var questions = [
   },
 ];
 function startQuiz() {
+  timeLeft = 90;
+  score = 0;
+  currentQuestion = 0;
+  questionHolder.style.visibility = "visible";
   answerA.style.visibility = "visible";
   answerB.style.visibility = "visible";
   answerC.style.visibility = "visible";
@@ -119,7 +123,7 @@ function startQuiz() {
 }
 
 function createQuestion() {
-  startBtn.style.display = "none";
+  startBtn.style.visibility = "hidden";
   question.textContent = questions[currentQuestion].questionText;
   answerA.textContent = questions[currentQuestion].answerChoices[0];
   answerB.textContent = questions[currentQuestion].answerChoices[1];
@@ -204,4 +208,4 @@ function goHome() {
   head.style.visibility = "visible";
 }
 
-goHome.addEventListener("click", goHome);
+home.addEventListener("click", goHome);

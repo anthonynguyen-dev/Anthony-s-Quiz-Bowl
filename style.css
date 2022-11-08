@@ -62,3 +62,14 @@ body {
     top: 1%;
 }
 
+#leaderBoards {
+    left: 1%
+}
+
+#done {
+    padding-right: 35%;
+}
+
+#highscore-container {
+    list-style: none;
+}
